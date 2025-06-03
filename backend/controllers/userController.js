@@ -19,7 +19,6 @@ export const register = async (req, res) => {
 
     // Step 2: Extract and validate input fields
     const { name, email, education, password, role, phone } = req.body;
-
     if (!name || !email || !education || !password || !role || !phone) {
       return res.status(400).json({ msg: "All fields are required." });
     }
@@ -72,31 +71,38 @@ export const register = async (req, res) => {
   }
 };
 
-
 export const login = async (req, res) => {
   const { email, password, role } = req.body;
 
   try {
+    // Step 1: Check if all required fields are provided
     if (!email || !password || !role) {
       return res.status(400).json({ msg: "All fields are required." });
     }
 
-    const user = await User.findOne({ email }).select("+password"); // by default schema mai password field un select hai isliye yha pe password field chaiye 
+    // Step 2: Email ke base pe user ko database se dhoondo aur password bhi le aao
+    // Note: User model me password by default select:false hota hai, isliye +password likhna zaroori hai
+    const user = await User.findOne({ email }).select("+password");
     if (!user) {
       return res.status(400).json({ msg: "Invalid email or password." });
     }
 
+    // Step 3: Password compare karo (bcrypt ka compare method use karke)
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(400).json({ msg: "Invalid email or password." });
     }
 
+    // Step 4: Role bhi match karo (example: admin ne user ka role likha ho, wo bhi same hona chahiye)
     if (user.role !== role) {
       return res.status(400).json({ msg: "Given role is not matched." });
     }
 
+    // Step 5: Sab sahi hone ke baad JWT token banao (user._id se) aur response me cookie me bhejo
     const token = await createTokenJwt(user._id, res);
-        console.log('login token',token);
+    console.log('login token', token);
+
+    // Step 6: Success response send karo (sensitive info jaise password nahi bhejna)
     return res.status(200).json({
       msg: "User login successfully.",
       user: {
@@ -109,6 +115,7 @@ export const login = async (req, res) => {
     });
 
   } catch (err) {
+    // Agar koi bhi error aaye to internal server error ka response bhejo
     return res.status(500).json({
       msg: "Server error.",
       error: err.message,
