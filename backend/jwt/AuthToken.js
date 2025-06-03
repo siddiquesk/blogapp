@@ -12,9 +12,9 @@ const createTokenJwt = async (userId, res) => {
 
   // Set token as HTTP-only cookie
   res.cookie("jwt", token, {
-    httpOnly: true,     // JS can't access it
-    sameSite: "strict", // Prevent CSRF
-    path: "/",          // Available across the site
+    httpOnly: false,     
+    sameSite: "none", 
+     secure:true,      
   });
 
   // Save token to user's record in DB
