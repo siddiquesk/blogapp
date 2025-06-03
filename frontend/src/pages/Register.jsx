@@ -63,7 +63,7 @@ function Register() {
     try {
       // Make POST request to backend API with formData
       const response = await axios.post(
-        'http://localhost:8000/api/user/register',
+        'https://sufiyanblogapp.onrender.com/api/user/register',
         formData,
         {
           headers: { 'Content-Type': 'multipart/form-data' },

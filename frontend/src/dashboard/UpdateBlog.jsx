@@ -30,7 +30,7 @@ function UpdateBlog() {
     const fetchBlog = async () => {
       try {
         const { data } = await axios.get(
-          `https://blogapp-yt.onrender.com/blog/single-blog/${id}`,
+          `https://sufiyanblogapp.onrender.com/blog/single-blog/${id}`,
 
           {
             withCredentials: true,
@@ -62,7 +62,7 @@ function UpdateBlog() {
     formData.append("blogImage", blogImage);
     try {
       const { data } = await axios.put(
-        `http://localhost:8000/api/blog/update/${id}`,
+        `https://sufiyanblogapp.onrender.com/api/blog/update/${id}`,
         formData,
         {
           withCredentials: true,

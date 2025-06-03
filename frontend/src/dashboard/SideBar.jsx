@@ -25,7 +25,7 @@ function SideBar({ component, setComponent }) {
   const handleLogout = async () => {
     try {
       const { data } = await axios.get(
-        "http://localhost:8000/api/user/logout",
+        "https://sufiyanblogapp.onrender.com/api/user/logout",
         { withCredentials: true }
       );
       toast.success(data.msg);

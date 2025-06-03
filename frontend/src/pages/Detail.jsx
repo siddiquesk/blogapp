@@ -12,7 +12,7 @@ function Detail() {
     const fetchblogs = async () => {
       try {
         const { data } = await axios.get(
-          `http://localhost:8000/api/blog/single-blog/${id}`,
+          `https://sufiyanblogapp.onrender.com/api/blog/single-blog/${id}`,
           {
             withCredentials: true,
             headers: {
