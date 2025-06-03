@@ -7,7 +7,7 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 
 function Navbar() {
-  const [showMenu, setShowMenu] = useState(false);
+  const [showMenu, setShowMenu] = useState(false); // Mobile menu toggle
   const { isAuthenticated, profile, setIsAuthenticated } = useAuth();
   const navigate = useNavigate();
 
@@ -30,12 +30,13 @@ function Navbar() {
   return (
     <nav className="shadow-lg px-4 md:px-0 py-4">
       <div className="flex justify-between items-center md:container md:mx-auto md:px-[4rem]">
-        {/* Logo */}
+
+        {/* Logo Section */}
         <div className="font-semibold text-xl cursor-pointer">
           Cilli<span className="text-blue-500">Blog</span>
         </div>
 
-        {/* Desktop Links */}
+        {/* Desktop Menu Links */}
         <ul className="space-x-6 hidden md:flex">
           <Link to="/" className="uppercase hover:text-blue-600 duration-300">Home</Link>
           <Link to="/blogs" className="uppercase hover:text-blue-600 duration-300">Blogs</Link>
@@ -44,7 +45,7 @@ function Navbar() {
           <Link to="/contact" className="uppercase hover:text-blue-600 duration-300">Contact</Link>
         </ul>
 
-        {/* Admin Dashboard */}
+        {/* Admin Dashboard Button */}
         {isAuthenticated && profile?.role === "admin" && (
           <Link
             to="/dashboard"
@@ -54,7 +55,7 @@ function Navbar() {
           </Link>
         )}
 
-        {/* Auth Button */}
+
         {!isAuthenticated ? (
           <Link
             to="/login"
@@ -71,13 +72,13 @@ function Navbar() {
           </button>
         )}
 
-        {/* Mobile Toggle */}
+        {/* Mobile Menu Toggle */}
         <div className="md:hidden" onClick={() => setShowMenu(!showMenu)}>
           {showMenu ? <IoClose size={24} /> : <AiOutlineMenu size={24} />}
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Navigation Menu */}
       {showMenu && (
         <div className="bg-white md:hidden">
           <ul className="flex flex-col h-screen justify-center items-center space-y-6 text-xl">
@@ -124,6 +125,5 @@ function Navbar() {
 }
 
 export default Navbar;
-
 
 

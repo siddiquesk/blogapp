@@ -18,9 +18,11 @@ app.use(fileUpload({
 }));
 
 app.use(cors({
-  origin: "http://localhost:5173",  // frontend ka origin (Vite app)
-  credentials: true                 // allow cookies and headers
+  origin: process.env.FRONTEND_URL,  // e.g. https://your-frontend.onrender.com
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true,
 }));
+
 
 app.use(express.json());
 app.use(cookieParser());
