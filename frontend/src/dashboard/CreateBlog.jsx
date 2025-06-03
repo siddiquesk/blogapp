@@ -31,7 +31,7 @@ function CreateBlog() {
     formData.append("blogImage", blogImage);
     try {
       const { data } = await axios.post(
-        "https://blogapp-yt.onrender.com/blog/create",
+        "http://localhost:8000/api/blog/create",
         formData,
         {
           withCredentials: true,

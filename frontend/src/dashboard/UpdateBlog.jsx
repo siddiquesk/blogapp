@@ -62,7 +62,7 @@ function UpdateBlog() {
     formData.append("blogImage", blogImage);
     try {
       const { data } = await axios.put(
-        `https://blogapp-yt.onrender.com/blog/update/${id}`,
+        `http://localhost:8000/api/blog/update/${id}`,
         formData,
         {
           withCredentials: true,

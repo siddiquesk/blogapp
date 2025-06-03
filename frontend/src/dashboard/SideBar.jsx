@@ -25,7 +25,7 @@ function SideBar({ component, setComponent }) {
   const handleLogout = async () => {
     try {
       const { data } = await axios.get(
-        "https://blogapp-yt.onrender.com/user/logout",
+        "http://localhost:8000/api/user/logout",
         { withCredentials: true }
       );
       toast.success(data.msg);

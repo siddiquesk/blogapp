@@ -14,7 +14,7 @@ function Navbar() {
   const handleLogout = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.get("https://blogapp-yt.onrender.com/user/logout", {
+      const { data } = await axios.get("http://localhost:8000/api/user/logout", {
         withCredentials: true,
       });
       localStorage.removeItem("jwt");
