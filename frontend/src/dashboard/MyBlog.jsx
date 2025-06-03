@@ -10,7 +10,7 @@ function MyBlog() {
     const fetchMyBlogs = async () => {
       try {
         const { data } = await axios.get(
-          "http://localhost:8000/api/blog/my-blog",
+          "https://blogapp-yt.onrender.com/blog/my-blog",
           { withCredentials: true }
         );
         console.log(data.blogs);
@@ -25,7 +25,7 @@ function MyBlog() {
 
   const handleDelete = async (id) => {
     await axios
-      .delete(`http://localhost:8000/api/blog/delete/${id}`, {
+      .delete(`https://blogapp-yt.onrender.com/blog/delete/${id}`, {
         withCredentials: true,
       })
       .then((res) => {

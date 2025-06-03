@@ -16,7 +16,7 @@ export const AuthProvider = ({ children }) => {
     // 🔹 Fetch logged-in user's profile
     const fetchProfile = async () => {
       try {
-        const { data } = await axios.get("http://localhost:8000/api/blog/my-profile", {
+        const { data } = await axios.get("https://blogapp-yt.onrender.com/blog/my-profile", {
           headers: {
             "Content-Type": "application/json",
           },
@@ -35,7 +35,7 @@ export const AuthProvider = ({ children }) => {
     // 🔹 Fetch all blogs
     const fetchBlog = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/api/blog/all-blogs");
+        const response = await axios.get("https://blogapp-yt.onrender.com/blog/all-blogs");
         setBlogs(response.data.blogs);
       } catch (err) {
         console.log("Error fetching blogs:", err);

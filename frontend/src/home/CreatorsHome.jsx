@@ -6,7 +6,7 @@ function CreatorsHome() {
   useEffect(() => {
     const fetchAdmin = async () => {
       try {
-        const { data } = await axios.get("http://localhost:8000/api/blog/admin", {
+        const { data } = await axios.get("https://blogapp-yt.onrender.com/blog/admin", {
           withCredentials: true,
         });
         console.log("getadmins data", data.admins);
